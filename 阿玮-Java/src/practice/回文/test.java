@@ -1,4 +1,4 @@
-package 阿玮_java.practice.回文;
+package practice.回文;
 
 public class test {
     public static boolean isPalindrome(int n) {
