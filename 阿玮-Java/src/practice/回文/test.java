@@ -10,6 +10,7 @@ public class test {
         }
         return n == cur;
     }
+
     public static void main(String[] args) {
         int n = 1231;
         System.out.println(isPalindrome(n));
