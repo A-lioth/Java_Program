@@ -8,16 +8,10 @@ public class test {
         return str[number];
     }
 
-    public static String getUnit(int number) {
-        String[] str = { "佰", "仟", "万", "仟", "佰", "拾", "元" };
-        return str[number];
-    }
-
     public static String convert(int money) {
         StringBuilder capital = new StringBuilder();
         while (money > 0) {
             capital.append(getCapital(money % 10));
-
             money /= 10;
         }
         return capital.reverse().toString();
