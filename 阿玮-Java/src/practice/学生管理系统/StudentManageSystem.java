@@ -13,11 +13,22 @@ public class StudentManageSystem {
         System.out.println("0. 退出系统");
     }
 
-    public static void add(ArrayList<Student> stu) {
+    public static boolean checkId(ArrayList<Student> stu, String id) {
+        for (Student s : stu)
+            if (s.getId().equals(id))
+                return true;
+        return false;
+    }
+
+    public static void add(ArrayList<Student> stu, Scanner sc) {
         Student s = new Student();
-        Scanner sc = new Scanner(System.in);
         System.out.print("请输入学生编号: ");
-        s.setId(sc.next());
+        String id = sc.next();
+        while (checkId(stu, id) == true) {
+            System.out.print("该编号已存在，请重新输入: ");
+            id = sc.next();
+        }
+        s.setId(id);
         System.out.print("请输入学生姓名: ");
         s.setName(sc.next());
         System.out.print("请输入学生性别(男/女): ");
@@ -28,10 +39,35 @@ public class StudentManageSystem {
         System.out.println("添加成功");
     }
 
-    public static void delete(ArrayList<Student> stu) {
+    public static void delete(ArrayList<Student> stu, Scanner sc) {
+        System.out.print("请输入要删除的学生编号: ");
+        String id = sc.next();
+        for (int i = 0; i < stu.size(); i++) {
+            if (stu.get(i).getId().equals(id)) {
+                stu.remove(i);
+                System.out.println("删除成功");
+                return;
+            }
+        }
+        System.out.println("该学生不存在");
     }
 
-    public static void modify(ArrayList<Student> stu) {
+    public static void modify(ArrayList<Student> stu, Scanner sc) {
+        System.out.print("请输入要修改的学生编号: ");
+        String id = sc.next();
+        for (int i = 0; i < stu.size(); i++) {
+            if (stu.get(i).getId().equals(id)) {
+                System.out.print("请输入新的学生姓名: ");
+                stu.get(i).setName(sc.next());
+                System.out.print("请输入新的学生性别(男/女): ");
+                stu.get(i).setGender(sc.next());
+                System.out.print("请输入新的学生年龄: ");
+                stu.get(i).setAge(sc.nextInt());
+                System.out.println("修改成功");
+                return;
+            }
+        }
+        System.out.println("该学生不存在");
     }
 
     public static void query(ArrayList<Student> stu) {
@@ -48,20 +84,21 @@ public class StudentManageSystem {
     public static void main(String[] args) {
         int choice = 0;
         ArrayList<Student> stu = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
         do {
-            Scanner sc = new Scanner(System.in);
             System.out.println("欢迎使用学生管理系统");
             showMenu();
             System.out.print("请选择(0-4): ");
             choice = sc.nextInt();
             switch (choice) {
-                case 1 -> add(stu);
-                case 2 -> delete(stu);
-                case 3 -> modify(stu);
+                case 1 -> add(stu, sc);
+                case 2 -> delete(stu, sc);
+                case 3 -> modify(stu, sc);
                 case 4 -> query(stu);
                 case 0 -> System.out.println("欢迎下次使用");
                 default -> System.out.println("输入错误，请重新输入");
             }
         } while (choice != 0);
+        sc.close();
     }
 }
