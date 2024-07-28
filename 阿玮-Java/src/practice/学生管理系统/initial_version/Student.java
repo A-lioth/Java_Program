@@ -1,4 +1,4 @@
-package practice.学生管理系统;
+package practice.学生管理系统.initial_version;
 
 public class Student {
     private String id;

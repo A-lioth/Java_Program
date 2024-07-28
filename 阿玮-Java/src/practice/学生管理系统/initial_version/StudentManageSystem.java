@@ -1,4 +1,4 @@
-package practice.学生管理系统;
+package practice.学生管理系统.initial_version;
 
 import java.util.Scanner;
 import java.util.ArrayList;
