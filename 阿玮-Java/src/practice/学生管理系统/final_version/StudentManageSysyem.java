@@ -76,9 +76,8 @@ public class StudentManageSysyem {
             return;
         }
         System.out.println("编号\t姓名\t性别\t年龄");
-        for (Student s : stu) {
+        for (Student s : stu) 
             System.out.println(s.getId() + "\t" + s.getName() + "\t" + s.getGender() + "\t" + s.getAge());
-        }
     }
 
     public static void start(Scanner sc) {

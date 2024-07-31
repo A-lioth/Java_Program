@@ -269,8 +269,7 @@ public class test {
             for (User u : users) {
                 if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
                     System.out.println("登录成功！");
-                    StudentManageSysyem s = new StudentManageSysyem();
-                    s.start(sc);
+                    StudentManageSysyem.start(sc);
                     return;
                 } else {
                     System.out.println("用户名或密码错误，请重新输入！");
