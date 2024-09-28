@@ -1,6 +1,6 @@
 package 抽象类和抽象方法;
 
-public class Frog extends Animal {
+public class Frog extends Animal implements Swim {
     public Frog() {
     }
 
@@ -11,5 +11,10 @@ public class Frog extends Animal {
     @Override
     public void eat() {
         System.out.println("青蛙在吃虫子");
+    }
+
+    @Override
+    public void swim() {
+        System.out.println("青蛙在蛙泳");
     }
 }

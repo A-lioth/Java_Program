@@ -1,6 +1,6 @@
 package 抽象类和抽象方法;
 
-public abstract class Sheep extends Animal {
+public class Sheep extends Animal {
     public Sheep() {
     }
 
