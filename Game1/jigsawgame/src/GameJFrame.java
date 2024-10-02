@@ -1,5 +1,3 @@
-package 拼图游戏.jigsawgame.src;
-
 import javax.swing.*;
 
 public class GameJFrame extends JFrame {

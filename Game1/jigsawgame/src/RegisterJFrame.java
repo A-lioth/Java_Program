@@ -1,7 +1,4 @@
-package 拼图游戏.jigsawgame.src;
-
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 public class RegisterJFrame extends JFrame {
     public RegisterJFrame() {
