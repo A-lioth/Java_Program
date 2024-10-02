@@ -7,6 +7,9 @@ public class GameJFrame extends JFrame {
         // * 初始化窗口
         initJFrame();
 
+        // * 初始化图片
+        initImage();
+
         // * 初始化菜单栏
         initJMenuBar();
     }
@@ -26,6 +29,17 @@ public class GameJFrame extends JFrame {
 
         // * 设置窗口关闭方式
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    private void initImage() {
+        // * 创建图片
+        ImageIcon imageIcon = new ImageIcon("src/images/background.jpg");
+
+        // * 创建JLabel
+        JLabel label = new JLabel(imageIcon);
+        
+        // * 添加JLabel到窗口
+        this.add(label);
     }
 
     private void initJMenuBar() {
