@@ -2,11 +2,17 @@ package cn.edu.nmu;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 
-public class GameJFrame extends JFrame {
+public class GameJFrame extends JFrame implements KeyListener {
     // * 创建二位数组用于存放拼图数据
     int[][] data = new int[4][4];
+
+    // * 记录当前拼图块的坐标
+    int x = 0;
+    int y = 0;
 
     public GameJFrame() {
         // * 初始化窗口
@@ -36,7 +42,12 @@ public class GameJFrame extends JFrame {
         }
 
         for (int i = 0; i < tempArr.length; i++) {
-            data[i / 4][i % 4] = tempArr[i];
+            if (tempArr[i] == 0) {
+                x = i / 4;
+                y = i % 4;
+            } else {
+                data[i / 4][i % 4] = tempArr[i];
+            }
         }
     }
 
@@ -58,9 +69,14 @@ public class GameJFrame extends JFrame {
 
         // * 取消默认居中
         this.setLayout(null);
+        // * 添加键盘监听器
+        this.addKeyListener(this);
     }
 
     private void initImage() {
+        // * 清空窗口
+        this.getContentPane().removeAll();
+
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 int num = data[i][j];
@@ -80,6 +96,9 @@ public class GameJFrame extends JFrame {
         JLabel background = new JLabel(new ImageIcon("puzzlegame\\image\\background.png"));
         background.setBounds(40, 40, 508, 560);
         this.getContentPane().add(background);
+
+        // * 刷新窗口
+        this.getContentPane().repaint();
     }
 
     private void initJMenuBar() {
@@ -110,5 +129,53 @@ public class GameJFrame extends JFrame {
 
         // * 设置菜单栏
         this.setJMenuBar(menuBar);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // * 左；37；上；38；右；39；下；40
+        int keyCode = e.getKeyCode();
+        if (keyCode == 37) {
+            if (y == 0) {
+                return;
+            }
+            data[x][y] = data[x][y - 1];
+            data[x][y - 1] = 0;
+            y--;
+        } else if (keyCode == 38) {
+            if (x == 0) {
+                return;
+            }
+            data[x][y] = data[x - 1][y];
+            data[x - 1][y] = 0;
+            x--;
+        } else if (keyCode == 39) {
+            if (y == 3) {
+                return;
+            }
+            data[x][y] = data[x][y + 1];
+            data[x][y + 1] = 0;
+            y++;
+        } else if (keyCode == 40) {
+            if (x == 3) {
+                return;
+            }
+            data[x][y] = data[x + 1][y];
+            data[x + 1][y] = 0;
+            x++;
+        }
+
+        // * 刷新图片
+        initImage();
     }
 }
