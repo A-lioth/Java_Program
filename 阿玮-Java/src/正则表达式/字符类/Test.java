@@ -8,7 +8,7 @@ public class Test {
         // System.out.println("a".matches("[abc]")); // true
         // System.out.println("ab".matches("[abc]")); // false
         // System.out.println("ab".matches("[abc][abc]")); // true
-       
+
         // * 不能出现 a, b, c 三个字符中的任何一个
         // System.out.println("-------------------------------");
         // System.out.println("a".matches("[^abc]")); // false
